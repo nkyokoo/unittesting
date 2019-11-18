@@ -1,0 +1,23 @@
+﻿using Xunit;
+using Newtonsoft.Json;
+
+namespace UserService.test
+{
+    public class UserService_Login
+    {
+        private readonly UserServices _userServices;
+
+        public UserService_Login()
+        {
+            _userServices = new UserServices();
+        }
+            
+        [Theory]
+        [InlineData("user@example.com", "1234")]
+        public void login_returnJsonData(string email, string password)
+        { 
+            var result = _userServices.Login(email,password);
+            Assert.True(result, "login fail");
+        }
+    }
+}
