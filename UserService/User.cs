@@ -2,27 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace unittestapp.uml
+namespace UserService
 {
 	public class User
 	{
-		int username;
-		int email;
-		usergroup usergroup;
+		string userid { get; set; }
+		string username { get; set; }
+		string email { get; set; }
+		string password { get; set; }
+		int usergroup { get; set; }
 
-		public void GetUserName()
-		{
-			throw new NotImplementedException();
-		}
+	
 
-		public void GetEmail()
-		{
-			throw new NotImplementedException();
-		}
 
-		public User(string username, string email)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

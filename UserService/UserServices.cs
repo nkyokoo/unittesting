@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
 
 namespace UserService
 {
     public class UserServices
-    {
+    {           
+        DBConnection db = DBConnection.Instance();
+
         public Boolean IsValidEmail(string emailInput)
         {
             String emailRegex =
@@ -22,9 +25,23 @@ namespace UserService
 
         public Boolean Login(string email, string password)
         {
-            if (email == "user@example.com" && password == "1234")
+            if (IsValidEmail(email))
             {
-                return true;
+                MySqlConnection connection = DBConnection.Instance().Connection;
+                MySqlCommand command = null;
+                command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM users WHERE email = @email" ;
+                command.Parameters.AddWithValue("@email", email);
+                command.ExecuteNonQuery();
+
+                if (email == "user@example.com" && password == "1234")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {

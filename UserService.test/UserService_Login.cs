@@ -14,7 +14,7 @@ namespace UserService.test
             
         [Theory]
         [InlineData("user@example.com", "1234")]
-        public void login_returnJsonData(string email, string password)
+        public void login_returnTrue(string email, string password)
         { 
             var result = _userServices.Login(email,password);
             Assert.True(result, "login fail");

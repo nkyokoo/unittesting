@@ -2,34 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace unittestapp.uml
+namespace UserService
 {
 	public class Cars
 	{
-		string name; 
-		string brandname;
-		int price;
-		int year;
+		string name{ get; set; }
+		string brandname{ get; set; }
+		int price{ get; set; }
+		private int year { get; set; }
 		
-
-		public string GetCarName()
-		{
-			throw new NotImplementedException();
-		}
-
-		public int GetCarPrice()
-		{
-			throw new NotImplementedException();
-		}
-
-		public int GetCarYear()
-		{
-			throw new NotImplementedException();
-		}
-
-		public Cars(string name, int price, int year)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

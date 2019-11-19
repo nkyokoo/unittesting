@@ -1,19 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
-namespace unittestapp.uml
+namespace UserService
 {
 	public class DataConstructor
 	{
-		public void ConvertCarData()
+		public Boolean ConvertCarData(string json)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				Cars car = JsonConvert.DeserializeObject<Cars>(json);
+				
+				return true;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				return false;
+			}
 		}
 
-		public void ConvertUser()
+		public Boolean ConvertUser(String json)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				
+				User users = JsonConvert.DeserializeObject<User>(json);
+
+				return true;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				return false;
+			}		
 		}
 	}
 }
