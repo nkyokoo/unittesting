@@ -13,7 +13,8 @@ namespace UserService.test
         }
             
         [Theory]
-        [InlineData("user@example.com", "1234")]
+        [InlineData("user1@example.com", "1234")]
+        [InlineData("user2@example.com", "1234")]
         public void login_returnTrue(string email, string password)
         { 
             var result = _userServices.Login(email,password);

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace UserService
 {
-	public class Cars
-	{
-		string name{ get; set; }
-		string brandname{ get; set; }
-		int price{ get; set; }
-		private int year { get; set; }
-		
-	}
+    public class Cars
+    {
+        public List<Car> _Cars{
+            get;
+            set;
+        }
+
+    }
 }

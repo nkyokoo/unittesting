@@ -6,14 +6,17 @@ namespace UserService
 {
 	public class User
 	{
-		string userid { get; set; }
-		string username { get; set; }
-		string email { get; set; }
-		string password { get; set; }
-		int usergroup { get; set; }
-
-	
-
-
+		private string userid;
+		private string username;
+		private string email;
+		private int usergroup;
+		
+		public User(string userid,string username, string email, int usergroup)
+		{
+			this.userid = userid;
+			this.username = username;
+			this.email = email;
+			this.usergroup = usergroup;
+		}
 	}
 }

@@ -12,6 +12,7 @@ namespace UserService
    
         private DBConnection()
         {
+            IsConnect();
         }
 
         private MySqlConnection connection = null;
@@ -22,6 +23,10 @@ namespace UserService
 
 
         private static DBConnection _instance = null;
+        /// <summary>
+        ///  gets the current instance and creates a new instance if the instance is null
+        /// </summary>
+        /// <returns>returns DBConnection</returns>
         public static DBConnection Instance()
         {
             if (_instance == null)
@@ -29,6 +34,10 @@ namespace UserService
             return _instance;
         }
 
+        /// <summary>
+        ///   Checks if the application is connected to the database and creates a new connection when connection is null
+        /// </summary>
+        /// <returns>True or False</returns>
         public bool IsConnect()
         {
             if (Connection == null)
