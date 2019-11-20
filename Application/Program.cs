@@ -15,19 +15,16 @@ namespace Application
             string email = "";
             string pass = "";
 
-            DataConstructor dataConstructor = new DataConstructor();
-            dataConstructor.ConvertUser();
-
             String title =
                 "-------------------------------------------------------\n"
                 + "             Database interface                        \n"
                 + "-------------------------------------------------------";
 
-            Printer.SlowPrint(title, 100);
-            Printer.SlowPrint("\nwrite credentials", 100);
-            Printer.SlowPrint("\nemail: ", 100);
+            Printer.SlowPrint(title, 50);
+            Printer.SlowPrint("\nwrite credentials", 50);
+            Printer.SlowPrint("\nemail: ", 50);
             email = Console.ReadLine();
-            Printer.SlowPrint("\npassword: ", 100);
+            Printer.SlowPrint("\npassword: ", 50);
             do
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -51,10 +48,17 @@ namespace Application
                 }
             } while (true);
             UserServices services = new UserServices();
-            if (services.Login(email, pass)) ;
+            if (services.Login(email, pass)) 
             {
+                Printer.SlowPrint("\nlogged in\n", 50);
                 Thread thread = new Thread(new ThreadStart(Run));
                 thread.Start();
+            }
+            else
+            {
+                Console.WriteLine("password incorrect");
+                Environment.Exit(-1);
+                
             }
             programState = "ready";
         }
@@ -63,12 +67,19 @@ namespace Application
         {
             while (true)
             {
+                Console.WriteLine("What do you want to do?");
                 string command = Console.ReadLine();
-
+                DatabaseServices databaseServices = new DatabaseServices();
                 switch (command)
                 {
                     case "showCars":
-                        
+
+                        databaseServices.GetCars();
+                            
+                        break;
+                    case "showUsers":
+
+                        databaseServices.GetUsers();
                             
                         break;
                 }

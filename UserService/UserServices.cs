@@ -39,6 +39,7 @@ namespace UserService
                 dr = command.ExecuteReader();
                  
                 string _password = "";
+                
                 while (dr.Read())
                 {
                     _password = dr.GetString("password");
@@ -46,6 +47,7 @@ namespace UserService
                 
                 if (password == _password)
                 {
+                    
                     dr.Close();  
                     return true;
                 }
