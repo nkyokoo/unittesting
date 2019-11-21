@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Threading;
 using MySql.Data.MySqlClient;
 using UserService;
@@ -9,6 +10,7 @@ namespace Application
     class Program
     {
         private static string programState = "";
+        static UserServices services = new UserServices();
 
         static void Main(string[] args)
         {
@@ -20,11 +22,11 @@ namespace Application
                 + "             Database interface                        \n"
                 + "-------------------------------------------------------";
 
-            Printer.SlowPrint(title, 50);
-            Printer.SlowPrint("\nwrite credentials", 50);
-            Printer.SlowPrint("\nemail: ", 50);
+            Printer.SlowPrint(title, 0);
+            Printer.SlowPrint("\nwrite credentials", 0);
+            Printer.SlowPrint("\nemail: ", 0);
             email = Console.ReadLine();
-            Printer.SlowPrint("\npassword: ", 50);
+            Printer.SlowPrint("\npassword: ", 0);
             do
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -47,11 +49,10 @@ namespace Application
                     }
                 }
             } while (true);
-            UserServices services = new UserServices();
             if (services.Login(email, pass)) 
             {
                 Printer.SlowPrint("\nlogged in\n", 50);
-                Thread thread = new Thread(new ThreadStart(Run));
+                Thread thread = new Thread(Run);
                 thread.Start();
             }
             else
@@ -65,6 +66,7 @@ namespace Application
 
         public static void Run()
         {
+            User usr = services.getUser();
             while (true)
             {
                 Console.WriteLine("What do you want to do?");
@@ -73,12 +75,18 @@ namespace Application
                 switch (command)
                 {
                     case "showCars":
-
+    
                         databaseServices.GetCars();
                             
                         break;
                     case "showUsers":
 
+                        if (usr.usergroup != 2)
+                        {
+                            Console.WriteLine("you don't have permission to run this command!");
+                            break;
+                        }
+                        
                         databaseServices.GetUsers();
                             
                         break;

@@ -3,11 +3,11 @@ using UserService;
 
 namespace UserService.test
 {
-    public class UserService_isUser
+    public class UserService_isValidEmail
     {
         private readonly UserServices _userServices;
 
-        public UserService_isUser()
+        public UserService_isValidEmail()
         {
             _userServices = new UserServices();
         }

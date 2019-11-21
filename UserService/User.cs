@@ -6,10 +6,10 @@ namespace UserService
 {
 	public class User
 	{
-		private string userid;
-		private string username;
-		private string email;
-		private int usergroup;
+		public string userid { get; }
+		public string username { get; }
+		public string email { get; }
+		public int usergroup { get; }
 		
 		public User(string userid,string username, string email, int usergroup)
 		{

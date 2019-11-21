@@ -30,11 +30,13 @@ namespace UserService
                     Console.WriteLine(" | " + dr.GetInt32("id") + " | " + dr.GetString("brand") + " " +
                                       dr.GetString("name") + " | " + dr.GetInt32("year") + " | " );
                 }
+                dr.Close();
 
                 return true;
             }
             catch (Exception e)
             {
+                dr.Close();
                 Console.WriteLine(e);
                 return false;
             }
@@ -63,11 +65,12 @@ namespace UserService
                                       + dr.GetString("email") + " | "
                                       + dr.GetInt32("groupid") + " | " );
                 }
-
+                dr.Close();
                 return true;
             }
             catch (Exception e)
             {
+                dr.Close();
                 Console.WriteLine(e);
                 return false;
             }
